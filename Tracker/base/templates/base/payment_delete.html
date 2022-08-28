@@ -1,0 +1,12 @@
+{% extends './main.html' %}
+
+{% block content %}
+<center>
+    <h3>Confirm to delete {{item}}</h3>
+<form action="{% url 'tracker:payment_delete' item.id %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'tracker:payment' %}" class="btn btn-danger">Cancel</a>
+    <input type="submit" name="Confirm" class="btn btn-primary">
+</form>
+</center>
+{% endblock %}

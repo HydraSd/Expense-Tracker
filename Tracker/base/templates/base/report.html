@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<center>
+    <u><h1>Main report</h1></u>
+    <h1>About Expense account</h1>
+    <hr>
+    <table style="width: 50%;">
+        <caption>Expense</caption>
+        <tr>
+            <th >Date</th>
+            <th >Description</th>
+            <th >LF</th>
+            <th>Value</th>
+        </tr>
+       {% for exp in expense %}
+            <tr>
+                <td>{{exp.date}}</td>
+                <td>{{exp.detail}}</td>
+                <td></td>
+                <td>Rs. {{exp.amount}}</td>
+            </tr>
+       {% endfor %}
+       <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><hr>Rs. {{total_exp}}<hr><hr></td>
+       </tr>
+    </table>
+    <hr>
+    <br>
+</center>
+<h1>Details about expenses</h1>
+<ol>
+    <h2><li>Totally You have spend Rs. {{total_exp}}/=</li></h2>
+    <h2><li>Maximum amout that you have spend during a time is Rs. {{exp_max}}/=</li></h2>
+    <h2><li>Minimum amount that you have been spend during a time is Rs. {{exp_min}}/=</li></h2>
+
+</ol>
+
+<br><br>
+
+<center>
+    <h1>About Incomes account</h1>
+    <hr>
+    <table>
+        <caption>Incomes</caption>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>LF</th>
+            <th>Value</th>
+        </tr>
+        {% for inc in incomes %}
+        <tr>
+            <td>{{inc.date}}</td>
+            <td>{{inc.income_detail}}</td>
+            <td></td>
+            <td>Rs.{{inc.amount}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><hr>Rs. {{total_inc}}<hr><hr></td>
+        </tr>
+    </table>
+    <hr>
+</center>
+<br>
+<h1>Details about Incomes</h1>
+<ol>
+    <h2><li>Totally You have gaind Rs. {{total_inc}}/=</li></h2>
+    <h2><li>Maximum amout that you gaind during a time is Rs. {{inc_max}}/=</li></h2>
+    <h2><li>Minimum amount that you gaind during a time is Rs. {{inc_min}}/=</li></h2>
+
+</ol>
+<br><br>
+<center>
+    <h1>About incomes and expenses</h1>
+    <hr>
+    <table>
+        <caption>Cash account</caption>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>LF</th>
+            <th>Value</th>
+            
+            <th>Date</th>
+            <th>Description</th>
+            <th>LF</th>
+            <th>Value</th>
+        </tr>
+
+        {% for inc in incomes %}
+        <tr>
+            <td>{{inc.date}}</td>
+            <td>{{inc.income_detail}}</td>
+            <td></td>
+            <td>Rs.{{inc.amount}}</td>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        
+        {% for exp in expense %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td>{{exp.date}}</td>
+            <td>{{exp.detail}}</td>
+            <td></td>
+            <td>Rs.{{exp.amount}}</td>
+
+        </tr>
+        {% endfor %}
+
+        {% if total_exp > total_inc %}
+            <td></td>
+            <td></td>
+            <td>blance carried down</td>
+            <td>Rs.{{balance}}</td>
+        {% else %}
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td>balance carried down</td>
+            <td>Rs{{balance}}</td>
+        {% endif %}
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            {% if total_inc >= total_exp %}
+            <td><hr>Rs.{{total_inc}}<hr><hr></td>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><hr>Rs.{{total_inc}}<hr><hr></td>
+
+            {% else %}
+            <td><hr>Rs.{{total_exp}}<hr><hr></td>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><hr>Rs.{{total_exp}}<hr><hr></td>
+            {% endif %}
+            
+        </tr>
+        {% if total_inc >= total_exp %}
+            <td></td>
+            <td></td>
+            <td>blance brought forward</td>
+            <td>Rs.{{balance}}</td>
+        {% else %}
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+            <td></td>
+            <td>balance brought forward</td>
+            <td>Rs.{{balance}}</td>
+        {% endif %}
+    </table>
+<hr>
+<br>
+<h1>Some details according to the inforations in above table</h1>
+{% if total_inc > total_exp %}
+    <h2>Accoording to the above data you have got Rs.{{balance}} amount of profit as a percentage it is {{percentage}}% </h2>
+{% elif total_exp > total_inc %}
+<h2>Accoording to the above data you have spend Rs.{{balance}} amount of money than your income as a percentage it is {{percentage}}%</h2>
+{% endif %}
+</center>
+<br><br>
+<center>
+    <h1>About class Fees</h1>
+    <hr>
+    <table>
+        <caption>
+            Class fees account
+        </caption>
+        <tr>
+            <td>Date</td>
+            <td>Class</td>
+            <td>Description</td>
+            <td>LF</td>
+            <td>Value</td>
+        </tr>
+        {% for pay in payment %}
+            <tr>
+                <td>{{pay.date}}</td>
+                <td>{{pay.class_name}}</td>
+                <td>{{pay.description}}</td>
+                <td></td>
+                <td>Rs.{{pay.amount}}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><hr>Rs.{{total_pay}}<hr><hr></td>
+        </tr>
+    </table>
+    <hr>
+</center>
+</body>
+</html>

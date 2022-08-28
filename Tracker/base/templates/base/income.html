@@ -1,0 +1,69 @@
+{% extends './main.html' %}
+
+{% block content %}
+
+<div class="p-3 mb-2 bg-dark">
+<br>
+<center>
+<font size="6">
+<div class="card" style="width: 20rem;">
+    <div class="card-header">
+      Total Income
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Rs.{{total}}</li>
+
+    </ul>
+  </div>
+</font>
+  </div>
+  <center>
+    <br>
+    <div class="form-group">
+    <div class="container">
+    
+      <form action="" method="GET">
+        {{income_filter.form.as_p}}
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    
+    </div>
+    </div>
+    </center>
+</center>
+<br>
+<br>
+
+<div class="p-3 mb-2 bg-dark">
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <a href="{% url 'tracker:income_form' %}" class="btn btn-primary">Add a income</a>
+  </div>
+  <br>
+  <!-- {% include './expense_t.html' %} -->
+  <center>
+  <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+      View and upgrade data
+    </button>
+  </p>
+  <div style="min-height: 120px;">
+    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+      <div class="card card-body" style="width: 800px;">
+        {% include './income_t.html' %}
+      </div>
+    </div>
+  </div>
+
+  <div class="card text-bg-info mb-3" style="max-width: 25rem;">
+    <div class="card-header">About incomes</div>
+    <div class="card-body">
+      <h5 class="card-title">Incomes</h5>
+      <p class="card-text">Highest amount = Rs.{{max}}</p>
+      <p class="card-text">Lowest amount = Rs.{{min}}</p>
+    </div>
+  </center>
+  </div>
+
+
+
+{% endblock %}

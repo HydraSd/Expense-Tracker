@@ -1,0 +1,54 @@
+{% extends './main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="p-3 mb-2 bg-dark text-dark">
+<center>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/expense.jpg' %}" class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">Expenses</h5>
+          <p class="card-text">Total expense = {{expenses_total}}/=</p>
+          <a href="{% url 'tracker:expense_form' %}" class="btn btn-primary">Add an expense</a>
+        </div>
+      </div>
+    </div>
+    &nbsp;
+    <div class="col-sm">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/class_fees.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Class Fees</h5>
+          <p class="card-text">Total paid = Rs{{total_fees}}/=</p>
+          <a href="{% url 'tracker:payment_form' %}" class="btn btn-primary">Add a payment</a>
+        </div>
+      </div>
+    </div>
+    &nbsp;
+    <div class="col-sm">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/incomes.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Incomes</h5>
+          <p class="card-text">Total income = Rs.{{income_total}}/=</p>
+          <a href="{% url 'tracker:income_form' %}" class="btn btn-primary">Add a income</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+
+<a type="button" class="btn btn-warning" style="width: 100%;" href="{% url 'tracker:pdf_view' %}">Get a report</a>
+</center>
+</div>
+  {% include './data1.html' %}
+
+{% endblock %}
+

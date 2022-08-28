@@ -1,0 +1,26 @@
+<table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Date</th>
+        <th scope="col">User</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in incomes %}
+      <tr>
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.date}}</td>
+        <td>{{item.user}}</td>
+        <td>{{item.income_detail}}</td>
+        <td>{{item.amount}}</td>
+        <td><a href="{% url 'tracker:update_income' item.id %}" class="btn btn-info">✔</a></td>
+        <td><a href="{% url 'tracker:delete_income' item.id %}" class="btn btn-danger">X</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

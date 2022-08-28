@@ -1,0 +1,14 @@
+{% extends './main.html' %}
+
+{% block content %}
+
+<center>
+    <h3>Confirm to delete {{income}}</h3>
+<form action="{% url 'tracker:delete_income' income.id %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'tracker:incomes' %}" class="btn btn-danger">Cancel</a>
+    <input type="submit" name="Confirm" class="btn btn-primary">
+</form>
+</center
+
+{% endblock %}
